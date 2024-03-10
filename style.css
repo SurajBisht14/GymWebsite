@@ -124,7 +124,7 @@ main{
     width: 275px;
     border-radius: 20px;
     border: 2px solid #ffcc00;
-    transition: all 1s linear;
+    transition: background 2s linear;
     background-image: url('gymTime1.avif');
     background-size: cover;
     background-repeat: no-repeat;
