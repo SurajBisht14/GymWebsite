@@ -216,21 +216,32 @@ document.querySelector("#xMark").addEventListener("click",()=>{
 
 
                                             //Set-Timeout function
-const gymTimePhotos=[
+const gymTimePhotos = [
     "gymTime1",
     "gymTime2",
     "gymTime3",
     "gymTime4",
     "gymTime5",
     "gymTime6",
-]
-let gymTimeIndex=1;
+];
+
+let gymTimeIndex = 0; // Start with the first image
 let gymTimeImg;
-setInterval(()=>{
+const imagePreloads = [];
+
+// Preload images
+gymTimePhotos.forEach(photo => {
+    const img = new Image();
+    img.src = `${photo}.avif`;
+    imagePreloads.push(img);
+});
+
+setInterval(() => {
     gymTimeIndex++;
     if (gymTimeIndex >= gymTimePhotos.length) {
         gymTimeIndex = 0;
     }
-    gymTimeImg=`url('${gymTimePhotos[gymTimeIndex]}.avif')`;
+    gymTimeImg = `url('${gymTimePhotos[gymTimeIndex]}.avif')`;
     document.querySelector(".homeIntroImg").style.backgroundImage = gymTimeImg;
-},4000)
+}, 4000);
+
