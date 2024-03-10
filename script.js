@@ -177,3 +177,60 @@ document.querySelector(".order").addEventListener('click', (e) => {
 })
 
 
+                            //Making the gallery photo visible
+
+
+let galleryImg=document.querySelectorAll(".galleryImg");
+let wholeBlack=document.querySelector(".wholeBlack");
+let currIndex;
+galleryImg.forEach((e,index)=>{
+    e.addEventListener('click',(eventObj)=>{
+        wholeBlack.style.visibility='visible';
+        let imgSrc=eventObj.target.getAttribute("src");
+        wholeBlack.querySelector("img").setAttribute("src", imgSrc);
+        currIndex=index;
+    })
+})
+                            //Back and forth of images
+document.querySelector("#rightArrow").addEventListener('click',()=>{
+    if(currIndex!==galleryImg.length-1)
+    {
+    currIndex++
+    let imgSrc= galleryImg[currIndex].getAttribute('src');
+    wholeBlack.querySelector("img").setAttribute("src", imgSrc);
+    }
+})                            
+document.querySelector("#leftArrow").addEventListener('click',()=>{
+    if(currIndex!==0){
+    currIndex--;
+    let imgSrc= galleryImg[currIndex].getAttribute('src');
+    wholeBlack.querySelector("img").setAttribute("src", imgSrc);
+    }
+})    
+
+
+                                             //REMOVING THE whole container
+document.querySelector("#xMark").addEventListener("click",()=>{
+    wholeBlack.style.visibility='hidden';
+})
+
+
+                                            //Set-Timeout function
+const gymTimePhotos=[
+    "gymTime1",
+    "gymTime2",
+    "gymTime3",
+    "gymTime4",
+    "gymTime5",
+    "gymTime6",
+]
+let gymTimeIndex=1;
+let gymTimeImg;
+setInterval(()=>{
+    gymTimeIndex++;
+    if (gymTimeIndex >= gymTimePhotos.length) {
+        gymTimeIndex = 0;
+    }
+    gymTimeImg=`url('${gymTimePhotos[gymTimeIndex]}.avif')`;
+    document.querySelector(".homeIntroImg").style.backgroundImage = gymTimeImg;
+},4000)
